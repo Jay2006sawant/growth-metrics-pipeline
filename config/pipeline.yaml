@@ -1,0 +1,22 @@
+warehouse:
+  sqlite_path: warehouse/analytics.db
+  raw_dir: data/raw
+
+sources:
+  customers: customers.csv
+  sessions: sessions.csv
+  orders: orders.csv
+  campaign_spend: campaign_spend.csv
+  fx_rates: fx_rates.csv
+
+exports:
+  output_dir: dashboard/exports
+  queries:
+    daily_kpi_by_channel: sql/exports/daily_kpi_by_channel.sql
+    campaign_roas: sql/exports/campaign_roas.sql
+    session_conversion_funnel: sql/exports/session_conversion_funnel.sql
+    cohort_retention_summary: sql/exports/cohort_retention_summary.sql
+
+quality:
+  fail_on_duplicate_orders: true
+  fail_on_orphan_orders: true

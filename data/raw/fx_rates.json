@@ -1,0 +1,47 @@
+{
+  "fetched": "Thu, 01 Oct 2026 00:02:31 +0000",
+  "rates": [
+    {
+      "rate_date": "2026-10-01",
+      "base_currency": "USD",
+      "quote_currency": "USD",
+      "exchange_rate": 1,
+      "source": "open.er-api.com"
+    },
+    {
+      "rate_date": "2026-10-01",
+      "base_currency": "USD",
+      "quote_currency": "AED",
+      "exchange_rate": 3.6725,
+      "source": "open.er-api.com"
+    },
+    {
+      "rate_date": "2026-10-01",
+      "base_currency": "USD",
+      "quote_currency": "EUR",
+      "exchange_rate": 0.881813,
+      "source": "open.er-api.com"
+    },
+    {
+      "rate_date": "2026-10-01",
+      "base_currency": "USD",
+      "quote_currency": "GBP",
+      "exchange_rate": 0.753798,
+      "source": "open.er-api.com"
+    },
+    {
+      "rate_date": "2026-10-01",
+      "base_currency": "USD",
+      "quote_currency": "INR",
+      "exchange_rate": 95.997282,
+      "source": "open.er-api.com"
+    },
+    {
+      "rate_date": "2026-10-01",
+      "base_currency": "USD",
+      "quote_currency": "SGD",
+      "exchange_rate": 1.277638,
+      "source": "open.er-api.com"
+    }
+  ]
+}

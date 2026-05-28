@@ -1,0 +1,7 @@
+rate_date,base_currency,quote_currency,exchange_rate,source
+2026-10-01,USD,USD,1.0,open.er-api.com
+2026-10-01,USD,AED,3.6725,open.er-api.com
+2026-10-01,USD,EUR,0.881813,open.er-api.com
+2026-10-01,USD,GBP,0.753798,open.er-api.com
+2026-10-01,USD,INR,95.997282,open.er-api.com
+2026-10-01,USD,SGD,1.277638,open.er-api.com

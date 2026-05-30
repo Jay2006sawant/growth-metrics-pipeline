@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Growth Metrics — Sample Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --card: #1a2332;
+      --text: #e8eef5;
+      --muted: #8b9cb3;
+      --accent: #3d8fd1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #2a3544;
+    }
+    header h1 { margin: 0 0 0.25rem; font-size: 1.35rem; }
+    header p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 3rem;
+      display: grid;
+      gap: 1.25rem;
+    }
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .kpi {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      border: 1px solid #2a3544;
+    }
+    .kpi label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .kpi strong { display: block; font-size: 1.5rem; margin-top: 0.35rem; color: var(--accent); }
+    .card {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 1.25rem;
+      border: 1px solid #2a3544;
+    }
+    .card h2 { margin: 0 0 1rem; font-size: 1rem; }
+    canvas { max-height: 320px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid #2a3544; }
+    th { color: var(--muted); font-weight: 600; }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Growth Metrics Pipeline — Executive preview</h1>
+    <p>Built from SQLite exports · <a href="https://github.com/Jay2006sawant/growth-metrics-pipeline">GitHub</a></p>
+  </header>
+  <main>
+    <div class="kpis" id="kpis"></div>
+    <div class="card">
+      <h2>Net revenue by channel</h2>
+      <canvas id="revChart"></canvas>
+    </div>
+    <div class="card">
+      <h2>Same-day session conversion %</h2>
+      <canvas id="convChart"></canvas>
+    </div>
+    <div class="card">
+      <h2>Top campaigns by ROAS (sample)</h2>
+      <table id="roasTable"><thead><tr><th>Channel</th><th>Campaign</th><th>ROAS</th><th>Revenue</th><th>Spend</th></tr></thead><tbody></tbody></table>
+    </div>
+  </main>
+  <footer>Jay Sawant · Analytics engineering portfolio sample</footer>
+  <script>
+    async function load() {
+      const res = await fetch('summary.json');
+      const data = await res.json();
+      const kpis = document.getElementById('kpis');
+      kpis.innerHTML = `
+        <div class="kpi"><label>Net revenue</label><strong>$${data.total_net_revenue_usd.toLocaleString()}</strong></div>
+        <div class="kpi"><label>Blended AOV</label><strong>$${data.blended_aov_usd.toFixed(2)}</strong></div>
+        <div class="kpi"><label>Channels</label><strong>${data.by_channel.length}</strong></div>
+      `;
+      new Chart(document.getElementById('revChart'), {
+        type: 'bar',
+        data: {
+          labels: data.by_channel.map(r => r.channel),
+          datasets: [{
+            label: 'Net revenue (USD)',
+            data: data.by_channel.map(r => r.net_revenue),
+            backgroundColor: '#3d8fd1'
+          }]
+        },
+        options: {
+          plugins: { legend: { display: false } },
+          scales: { y: { ticks: { color: '#8b9cb3' }, grid: { color: '#2a3544' } }, x: { ticks: { color: '#8b9cb3' }, grid: { display: false } } }
+        }
+      });
+      new Chart(document.getElementById('convChart'), {
+        type: 'bar',
+        data: {
+          labels: data.conversion_by_channel.map(r => r.channel),
+          datasets: [{
+            label: 'Conversion %',
+            data: data.conversion_by_channel.map(r => r.conv_pct),
+            backgroundColor: '#5cb87a'
+          }]
+        },
+        options: {
+          plugins: { legend: { display: false } },
+          scales: { y: { ticks: { color: '#8b9cb3' }, grid: { color: '#2a3544' } }, x: { ticks: { color: '#8b9cb3' }, grid: { display: false } } }
+        }
+      });
+      const tbody = document.querySelector('#roasTable tbody');
+      data.top_roas_campaigns.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${row.channel}</td><td>${row.campaign}</td><td>${row.roas}</td><td>$${row.revenue.toLocaleString()}</td><td>$${row.spend_usd.toLocaleString()}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+    load().catch(err => {
+      document.body.innerHTML = '<p style="padding:2rem;color:#fff">Could not load summary.json. Open from GitHub Pages or run generate_insights.py locally.</p>';
+      console.error(err);
+    });
+  </script>
+</body>
+</html>

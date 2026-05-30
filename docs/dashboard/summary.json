@@ -1,0 +1,116 @@
+{
+  "total_net_revenue_usd": 1249011.94,
+  "blended_aov_usd": 139.87,
+  "by_channel": [
+    {
+      "channel": "organic",
+      "orders": 2460,
+      "net_revenue": 348567.43
+    },
+    {
+      "channel": "paid_search",
+      "orders": 2313,
+      "net_revenue": 322956.23
+    },
+    {
+      "channel": "paid_social",
+      "orders": 2034,
+      "net_revenue": 282482.59
+    },
+    {
+      "channel": "email",
+      "orders": 1254,
+      "net_revenue": 176123.87
+    },
+    {
+      "channel": "affiliate",
+      "orders": 869,
+      "net_revenue": 118881.82
+    }
+  ],
+  "top_roas_campaigns": [
+    {
+      "channel": "paid_search",
+      "campaign": "retargeting_search",
+      "revenue": 118550.75,
+      "spend_usd": 69427.43,
+      "roas": 1.71
+    },
+    {
+      "channel": "paid_search",
+      "campaign": "brand_search_q4",
+      "revenue": 108417.39,
+      "spend_usd": 68987.73,
+      "roas": 1.57
+    },
+    {
+      "channel": "paid_social",
+      "campaign": "meta_prospecting",
+      "revenue": 101105.19,
+      "spend_usd": 74107.92,
+      "roas": 1.36
+    },
+    {
+      "channel": "paid_social",
+      "campaign": "tiktok_awareness",
+      "revenue": 93234.73,
+      "spend_usd": 72790.98,
+      "roas": 1.28
+    },
+    {
+      "channel": "paid_social",
+      "campaign": "meta_retarget",
+      "revenue": 88142.67,
+      "spend_usd": 74361.86,
+      "roas": 1.19
+    }
+  ],
+  "conversion_by_channel": [
+    {
+      "channel": "paid_social",
+      "conv_pct": 13.51
+    },
+    {
+      "channel": "paid_search",
+      "conv_pct": 12.37
+    },
+    {
+      "channel": "affiliate",
+      "conv_pct": 11.57
+    },
+    {
+      "channel": "email",
+      "conv_pct": 11.01
+    },
+    {
+      "channel": "organic",
+      "conv_pct": 10.9
+    }
+  ],
+  "cohort_repeat": [
+    {
+      "cohort_month": "2025-06",
+      "cohort_size": 1340,
+      "repeat_customers": 626,
+      "repeat_rate_pct": 46.72
+    },
+    {
+      "cohort_month": "2025-07",
+      "cohort_size": 1402,
+      "repeat_customers": 639,
+      "repeat_rate_pct": 45.58
+    },
+    {
+      "cohort_month": "2025-08",
+      "cohort_size": 1377,
+      "repeat_customers": 617,
+      "repeat_rate_pct": 44.81
+    },
+    {
+      "cohort_month": "2025-09",
+      "cohort_size": 1259,
+      "repeat_customers": 563,
+      "repeat_rate_pct": 44.72
+    }
+  ]
+}

@@ -10,9 +10,14 @@ Use these links on your resume or application.
 
 ## Enable GitHub Pages (one time)
 
-1. Repo **Settings → Pages → Build and deployment**: Source = **GitHub Actions**.
-2. Push to `main`. The `pages` workflow deploys `docs/dashboard/`.
-3. Wait 2–5 minutes, then open the live preview URL above.
+If the **github-pages** deployment shows a red X, the repo is usually not set to Actions yet.
+
+1. Open **Settings → Pages**.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from a branch”).
+3. Go to **Actions**, open the latest **pages** workflow run, and click **Re-run all jobs** (or push any commit to `main`).
+4. Wait 2–5 minutes, then open https://jay2006sawant.github.io/growth-metrics-pipeline/
+
+The site is static HTML in `docs/dashboard/` (includes `.nojekyll` so Jekyll is skipped).
 
 ## Refresh numbers
 

@@ -2,7 +2,7 @@
 
 Synthetic data, real pipeline. Numbers below come from `python/generate_insights.py` on the committed CSV feeds.
 
-## Questions we asked
+## Analysis scope
 
 1. **Where is revenue coming from?**  
    Channel-level net revenue and order volume (`sql/exports/daily_kpi_by_channel.sql`).
@@ -23,20 +23,18 @@ Synthetic data, real pipeline. Numbers below come from `python/generate_insights
 | Total net revenue (USD) | 1,249,011.94 |
 | Blended AOV (USD) | 139.87 |
 
-**Revenue by channel (top to bottom):** organic (~349k), paid_search (~323k), paid_social (~282k), email (~176k), affiliate (~119k). Organic and paid search drive the largest share; affiliate is smallest but still material.
+**Revenue by channel (top to bottom):** organic (~349k), paid_search (~323k), paid_social (~282k), email (~176k), affiliate (~119k). Organic and paid search drive the largest share of net revenue in this sample.
 
-**ROAS (campaigns with meaningful spend):** `retargeting_search` on paid_search leads at roughly **1.71** ROAS on blended sample totals. Use this to prioritize budget reviews, not as a live client number.
+**ROAS (campaigns with meaningful spend):** `retargeting_search` on paid_search leads at roughly **1.71** ROAS on blended sample totals.
 
-**Conversion rate (same-day, session join):** email and affiliate tend to show higher session-to-order rates than broad paid social in this generator. That pattern is useful for funnel debugging, not for claiming channel quality without holdout tests.
+**Conversion rate (same-day, session join):** email and affiliate sessions convert at higher rates than broad paid social in this generator.
 
-**Cohort repeat:** repeat rates by signup month are in `cohort_retention_summary.csv` and the [dashboard report](dashboard/index.html).
+**Cohort repeat:** repeat rates by signup month are in `cohort_retention_summary.csv` and the [chart preview](dashboard/index.html).
 
-## Decisions a stakeholder might take
+## Stakeholder actions (sample)
 
-- Shift paid social creative tests before scaling spend if ROAS trails retargeting search.  
-- Keep organic landing paths healthy since they contribute the largest revenue slice in the sample.  
-- Run `make quality` before any BI refresh so orphan orders and duplicate keys do not pollute dashboards.
+- Review paid social efficiency before scaling spend versus retargeting search benchmarks.  
+- Monitor organic share given its revenue contribution in the sample.  
+- Run `make quality` before refreshing BI exports.
 
-## Definitions
-
-See [metrics_dictionary.md](metrics_dictionary.md) and [attribution.md](attribution.md).
+Definitions: [metrics_dictionary.md](metrics_dictionary.md), [attribution.md](attribution.md).

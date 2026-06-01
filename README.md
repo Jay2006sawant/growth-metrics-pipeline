@@ -1,21 +1,19 @@
 # Growth Metrics Pipeline
 
-End-to-end analytics engineering sample: bronze CSV feeds, silver SQLite warehouse, gold KPI exports, and BI handoff for Looker Studio, Sheets, or BigQuery.
+Multi-channel commerce and marketing analytics: bronze CSV feeds, SQLite warehouse, SQL KPI layer, and CSV exports for Looker Studio, Google Sheets, or BigQuery.
 
-Built by [Jay Sawant](https://github.com/Jay2006sawant) to show the full loop agencies run for growth clients (CRO, paid media, executive reporting).
+## Outputs
 
-## Live demos
+| Output | Location |
+|--------|----------|
+| Interactive chart preview | https://jay2006sawant.github.io/growth-metrics-pipeline/ |
+| Metrics and decisions summary | [reports/METRICS_AND_DECISIONS.md](reports/METRICS_AND_DECISIONS.md) |
+| Narrative insights | [docs/business_insights.md](docs/business_insights.md) |
+| Looker Studio field map | [docs/looker_studio.md](docs/looker_studio.md) |
+| Sheets tab layout | [sheets/workbook_layout.md](sheets/workbook_layout.md) |
+| BigQuery DDL and queries | [bigquery/](bigquery/) · [docs/gcp/bigquery_console_guide.md](docs/gcp/bigquery_console_guide.md) |
 
-| Demo | Link |
-|------|------|
-| Chart preview (GitHub Pages) | https://jay2006sawant.github.io/growth-metrics-pipeline/ |
-| Metrics + decisions (one page) | [reports/METRICS_AND_DECISIONS.md](reports/METRICS_AND_DECISIONS.md) |
-| Business narrative | [docs/business_insights.md](docs/business_insights.md) |
-| Looker Studio | *Add your published report URL here after [docs/looker_studio_setup.md](docs/looker_studio_setup.md)* |
-| Google Sheets | *Add published sheet URL after [sheets/README.md](sheets/README.md)* |
-| BigQuery | [docs/gcp/bigquery_console_guide.md](docs/gcp/bigquery_console_guide.md) (+ optional screenshot in `docs/gcp/`) |
-
-Enable GitHub Pages: **Settings → Pages → GitHub Actions**. See [docs/PORTFOLIO.md](docs/PORTFOLIO.md).
+Gold CSVs live in `dashboard/exports/` after `make all`.
 
 ## What the SQL answers
 
@@ -41,7 +39,7 @@ make quality
 pytest tests/ -q
 ```
 
-Runbook: [docs/pipeline_runbook.md](docs/pipeline_runbook.md).
+Runbook: [docs/pipeline_runbook.md](docs/pipeline_runbook.md). Static site deploy: [docs/deploy.md](docs/deploy.md).
 
 ## Layout
 
@@ -52,9 +50,9 @@ sql/              analytics, marts, gold, export queries
 python/           ingest, validate, load, exports, insights JSON
 warehouse/        local SQLite (not committed)
 dashboard/exports gold tables for BI
-docs/             metrics, GCP, portfolio, static dashboard
-reports/          one-page metrics + decisions
-sheets/           Google Sheets publishing steps
+docs/             metrics, GCP, static dashboard
+reports/          metrics + decisions summary
+sheets/           workbook layout notes
 bigquery/         partitioned DDL + samples
 tests/            pytest
 ```

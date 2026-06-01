@@ -1,22 +1,22 @@
-# BigQuery console walkthrough
+# BigQuery console guide
 
-Use this after you load tables with `bigquery/ddl_partitioned.sql` and `bq load`.
+Prerequisites: tables created from [ddl_partitioned.sql](../../bigquery/ddl_partitioned.sql) and CSV loads via `bq load`.
 
-## 1. Create dataset
+## Dataset
 
 ```bash
 export PROJECT=your-gcp-project
 bq mk --dataset --location=US ${PROJECT}:growth_metrics
 ```
 
-## 2. Load orders (example)
+## Load orders
 
 ```bash
 bq load --autodetect --source_format=CSV \
   ${PROJECT}:growth_metrics.orders data/raw/orders.csv
 ```
 
-## 3. KPI query (paste in Cloud Console → BigQuery → Query)
+## KPI query
 
 ```sql
 SELECT
@@ -30,16 +30,10 @@ ORDER BY net_revenue DESC
 LIMIT 20;
 ```
 
-## Expected shape (local SQLite reference)
-
-Run the same logic locally:
+Local equivalent:
 
 ```bash
 sqlite3 warehouse/analytics.db < sql/03_kpi_aggregations.sql | head
 ```
 
-Save a **screenshot** of your BigQuery results grid as `docs/gcp/bigquery_kpi_screenshot.png` and link it from the README when you have a GCP project. Do not commit fake screenshots.
-
-## Scheduled refresh
-
-For production, schedule a query export to GCS and point Looker Studio at BigQuery instead of Sheets.
+Scheduled exports to GCS can feed Looker Studio on the BigQuery connector.
